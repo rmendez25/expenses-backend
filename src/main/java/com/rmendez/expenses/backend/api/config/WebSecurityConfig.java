@@ -28,6 +28,8 @@ public class WebSecurityConfig {
                 .csrf().disable()
                 .authorizeRequests(auth -> auth
                         .mvcMatchers(HttpMethod.POST, "/users").permitAll()
+                        .mvcMatchers(HttpMethod.GET, "/users").permitAll()
+                        .mvcMatchers(HttpMethod.GET, "/").permitAll()
                         .anyRequest()
                         .authenticated())
                 .build();
