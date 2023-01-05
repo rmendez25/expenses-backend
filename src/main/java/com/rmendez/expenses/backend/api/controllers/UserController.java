@@ -26,7 +26,6 @@ public class UserController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasAuthority('write')")
     public Iterable<User> findAllUsers() {
         return userService.findAllUsers();
     }
