@@ -1,0 +1,18 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: expenses tracker
+    description: A api to track expenses.
+    author: Robert Mendez
+    version: '@project.version@'
+spring:
+  profiles:
+    active: prod
