@@ -4,6 +4,7 @@ public enum Category {
     ENTERTAINMENT,
     FOOD,
     TRANSPORTATION,
-    EDUCATION
+    EDUCATION,
+    HEALTH
 
 }

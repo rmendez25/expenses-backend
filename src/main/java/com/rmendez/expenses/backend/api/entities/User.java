@@ -7,7 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -30,13 +33,16 @@ public class User {
     )
     private Long userId;
 
+    //@Column(nullable = false)
+    @NotBlank(message = "Please provide the firstName")
     private String firstName;
-
+    @Column(nullable = false)
     private String lastName;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
     private LocalDateTime createdAt;
@@ -50,6 +56,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "authorityId"))
    // @JsonIgnore
     private List<Authority> authorities;
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @JsonIgnore
+    private List<Expenses> expenses = new ArrayList<>();
 
     public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;

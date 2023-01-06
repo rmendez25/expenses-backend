@@ -7,9 +7,12 @@ import com.rmendez.expenses.backend.api.models.ExpensesModel;
 import com.rmendez.expenses.backend.api.services.ExpenseService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/expenses")
@@ -41,5 +44,15 @@ public class ExpensesController {
     public Expenses updateExpense(@RequestBody Expenses expenses, @PathVariable("id") Long expenseId, @PathVariable("userId")  Long userId) throws ExpenseNotFoundException {
         return expenseService.updateExpense(expenses, expenseId, userId);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Object> deleteExpenseById(@PathVariable Long id) throws ExpenseNotFoundException {
+        expenseService.deleteExpenseById(id);
+        Map<String, String> map = new HashMap<>();
+        map.put("message", "Deleted Successfully");
+        return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
 
 }

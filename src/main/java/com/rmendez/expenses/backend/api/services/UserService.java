@@ -1,12 +1,15 @@
 package com.rmendez.expenses.backend.api.services;
 
 import com.rmendez.expenses.backend.api.entities.Authority;
+import com.rmendez.expenses.backend.api.entities.Expenses;
 import com.rmendez.expenses.backend.api.entities.User;
 import com.rmendez.expenses.backend.api.exception.UserNotFoundException;
 import com.rmendez.expenses.backend.api.models.UserModel;
 import com.rmendez.expenses.backend.api.repositories.AuthorityRepository;
+import com.rmendez.expenses.backend.api.repositories.ExpensesRepository;
 import com.rmendez.expenses.backend.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,10 @@ public class UserService {
 
     @Autowired
     private AuthorityRepository authorityRepository;
+
+    @Autowired
+    private ExpensesRepository expensesRepository;
+
     @Autowired
     PasswordEncoder encoder;
 
