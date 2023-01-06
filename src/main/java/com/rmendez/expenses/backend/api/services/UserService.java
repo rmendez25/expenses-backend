@@ -2,6 +2,7 @@ package com.rmendez.expenses.backend.api.services;
 
 import com.rmendez.expenses.backend.api.entities.Authority;
 import com.rmendez.expenses.backend.api.entities.User;
+import com.rmendez.expenses.backend.api.exception.UserNotFoundException;
 import com.rmendez.expenses.backend.api.models.UserModel;
 import com.rmendez.expenses.backend.api.repositories.AuthorityRepository;
 import com.rmendez.expenses.backend.api.repositories.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -38,13 +40,25 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+    public User findUserById(Long id) throws UserNotFoundException {
+        Optional<User> user =  userRepository.findById(id);
+
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("User not found with id: " + id);
+        }
+
+        return user.get();
     }
 
+    public void deleteUser(Long id) throws UserNotFoundException {
+        Optional<User> user =  userRepository.findById(id);
 
-    public void deleteUser(Long id) {
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("User not found with id: " + id);
+        }
+
         userRepository.deleteById(id);
+
     }
 
     public User updateUser() {

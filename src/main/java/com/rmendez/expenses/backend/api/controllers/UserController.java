@@ -1,6 +1,7 @@
 package com.rmendez.expenses.backend.api.controllers;
 
 import com.rmendez.expenses.backend.api.entities.User;
+import com.rmendez.expenses.backend.api.exception.UserNotFoundException;
 import com.rmendez.expenses.backend.api.models.UserModel;
 import com.rmendez.expenses.backend.api.services.UserService;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.UnknownServiceException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +33,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    private User findUserById(@PathVariable("id") Long id) {
+    private User findUserById(@PathVariable("id") Long id) throws UserNotFoundException {
         return userService.findUserById(id);
     }
 
@@ -42,7 +44,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) throws UserNotFoundException {
         Map<String, String> map = new HashMap<>();
         map.put("message", "Deleted Successfully");
         userService.deleteUser(id);
