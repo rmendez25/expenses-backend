@@ -33,8 +33,7 @@ public class User {
     )
     private Long userId;
 
-    //@Column(nullable = false)
-    @NotBlank(message = "Please provide the firstName")
+    @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
     private String lastName;

@@ -23,7 +23,7 @@ public class ExpensesController {
 
     @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Expenses saveExpense(@RequestBody ExpensesModel expensesModel, @PathVariable Long id) {
+    public Expenses saveExpense(@RequestBody ExpensesModel expensesModel, @PathVariable Long id) throws UserNotFoundException {
         return expenseService.saveExpense(expensesModel, id);
     }
 
@@ -41,7 +41,7 @@ public class ExpensesController {
 
     @PutMapping("/expense/{id}/user/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public Expenses updateExpense(@RequestBody Expenses expenses, @PathVariable("id") Long expenseId, @PathVariable("userId")  Long userId) throws ExpenseNotFoundException {
+    public Expenses updateExpense(@RequestBody Expenses expenses, @PathVariable("id") Long expenseId, @PathVariable("userId")  Long userId) throws ExpenseNotFoundException, UserNotFoundException {
         return expenseService.updateExpense(expenses, expenseId, userId);
     }
 
