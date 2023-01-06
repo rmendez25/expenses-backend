@@ -25,13 +25,13 @@ public class WebSecurityConfig {
         return http
                 .userDetailsService(jpaUserDetailService).httpBasic()
                 .and()
-                .csrf().disable()
                 .authorizeRequests(auth -> auth
                         .mvcMatchers(HttpMethod.POST, "/users").permitAll()
-                        .mvcMatchers(HttpMethod.GET, "/users").permitAll()
                         .mvcMatchers(HttpMethod.GET, "/").permitAll()
                         .anyRequest()
                         .authenticated())
+                .csrf().ignoringAntMatchers("/users/**", "/expenses/**")
+                .and()
                 .build();
     }
 

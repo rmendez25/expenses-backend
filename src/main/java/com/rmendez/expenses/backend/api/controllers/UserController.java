@@ -26,6 +26,7 @@ public class UserController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('write')")
     public Iterable<User> findAllUsers() {
         return userService.findAllUsers();
     }
@@ -60,7 +61,4 @@ public class UserController {
     public User setAuthority(@PathVariable("userId") Long userId, @PathVariable("authorityId") Long authorityId) {
         return userService.setAuthority(userId, authorityId);
     }
-
-
-
 }
