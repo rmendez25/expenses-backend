@@ -88,17 +88,4 @@ public class UserService {
         return userRepository.save(userToUpdate);
     }
 
-    public User setAuthority(Long userId, Long authorityId) {
-        User user = userRepository.findById(userId).get();
-        user.setUpdatedAt(LocalDateTime.now());
-        Authority authority = authorityRepository.findById(authorityId).get();
-
-        List<Authority> authorities = null;
-        authorities = user.getAuthorities();
-        authorities.add(authority);
-
-        user.setAuthorities(authorities);
-        return userRepository.save(user);
-    }
-
 }

@@ -48,7 +48,7 @@ public class User {
             name = "users_authorities",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "authorityId"))
-    @JsonIgnore
+   // @JsonIgnore
     private List<Authority> authorities;
 
     public User(String firstName, String lastName, String username, String password) {

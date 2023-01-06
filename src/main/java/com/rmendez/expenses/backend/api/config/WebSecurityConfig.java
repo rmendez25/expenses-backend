@@ -30,7 +30,7 @@ public class WebSecurityConfig {
                         .mvcMatchers(HttpMethod.GET, "/").permitAll()
                         .anyRequest()
                         .authenticated())
-                .csrf().ignoringAntMatchers("/users/**", "/expenses/**")
+                .csrf().ignoringAntMatchers("/users/**", "/expenses/**", "/authorities/**")
                 .and()
                 .build();
     }

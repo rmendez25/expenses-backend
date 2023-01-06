@@ -51,9 +51,4 @@ public class UserController {
 
     }
 
-    @PutMapping("/{userId}/authority/{authorityId}")
-    @ResponseStatus(HttpStatus.OK)
-    public User setAuthority(@PathVariable("userId") Long userId, @PathVariable("authorityId") Long authorityId) {
-        return userService.setAuthority(userId, authorityId);
-    }
 }
