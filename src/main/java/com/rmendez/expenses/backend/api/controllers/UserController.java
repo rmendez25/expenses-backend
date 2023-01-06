@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.UnknownServiceException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,8 +37,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable("id") Long id, @RequestBody UserModel userModel) {
-        return userService.updateUser();
+    public User updateUser(@PathVariable("id") Long id, @RequestBody User user) throws UserNotFoundException {
+        return userService.updateUser(id, user);
     }
 
     @DeleteMapping("/{id}")

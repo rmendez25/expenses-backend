@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -54,15 +55,37 @@ public class UserService {
         Optional<User> user =  userRepository.findById(id);
 
         if (user.isEmpty()) {
-            throw new UserNotFoundException("User not found with id: " + id);
+            throw new UserNotFoundException("User not found");
         }
 
         userRepository.deleteById(id);
 
     }
 
-    public User updateUser() {
-        return null;
+    public User updateUser(Long id, User user) throws UserNotFoundException {
+        Optional<User> userDB = userRepository.findById(id);
+
+        if (userDB.isEmpty()) {
+            throw new UserNotFoundException("User not found");
+        }
+
+        User userToUpdate = userDB.get();
+
+        if (Objects.nonNull(user.getFirstName()) && !"".equalsIgnoreCase(user.getFirstName())) {
+            userToUpdate.setFirstName(user.getFirstName());
+        }
+
+        if (Objects.nonNull(user.getLastName()) && !"".equalsIgnoreCase(user.getLastName())) {
+            userToUpdate.setLastName(user.getLastName());
+        }
+
+        if (Objects.nonNull(user.getPassword()) && !"".equalsIgnoreCase(user.getPassword())) {
+            userToUpdate.setPassword(user.getPassword());
+        }
+
+        userToUpdate.setUpdatedAt(LocalDateTime.now());
+
+        return userRepository.save(userToUpdate);
     }
 
     public User setAuthority(Long userId, Long authorityId) {
