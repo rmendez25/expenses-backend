@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/expenses")
 @AllArgsConstructor
@@ -18,5 +20,11 @@ public class ExpensesController {
     @ResponseStatus(HttpStatus.CREATED)
     public Expenses saveExpense(@RequestBody ExpensesModel expensesModel, @PathVariable Long id) {
         return expenseService.saveExpense(expensesModel, id);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Expenses> findAllExpenses() {
+        return expenseService.findAllExpenses();
     }
 }

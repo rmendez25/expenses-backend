@@ -2,14 +2,13 @@ package com.rmendez.expenses.backend.api.services;
 
 import com.rmendez.expenses.backend.api.entities.Expenses;
 import com.rmendez.expenses.backend.api.entities.User;
-import com.rmendez.expenses.backend.api.enums.Category;
 import com.rmendez.expenses.backend.api.models.ExpensesModel;
 import com.rmendez.expenses.backend.api.repositories.ExpensesRepository;
 import com.rmendez.expenses.backend.api.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -28,5 +27,9 @@ public class ExpenseService {
         expenses.setDate(expensesModel.getDate());
 
         return expensesRepository.save(expenses);
+    }
+
+    public List<Expenses> findAllExpenses() {
+        return expensesRepository.findAll();
     }
 }
