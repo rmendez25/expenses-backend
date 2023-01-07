@@ -60,6 +60,10 @@ public class User {
     @JsonIgnore
     private List<Expenses> expenses = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @JsonIgnore
+    private List<Income> incomes = new ArrayList<>();
+
     public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
