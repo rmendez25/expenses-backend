@@ -29,7 +29,7 @@ public class Expenses {
     )
     private Long expenseId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "category", nullable = false)
