@@ -1,10 +1,13 @@
 package com.rmendez.expenses.backend.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rmendez.expenses.backend.api.enums.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -42,11 +45,13 @@ public class Expenses {
     @Column(name = "date")
     private LocalDateTime date;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "user_id",
             referencedColumnName = "userId"
     )
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private User user;
 
 }

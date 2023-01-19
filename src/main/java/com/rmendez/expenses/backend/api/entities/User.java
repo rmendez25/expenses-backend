@@ -56,9 +56,9 @@ public class User {
    // @JsonIgnore
     private List<Authority> authorities;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
-    @JsonIgnore
-    private List<Expenses> expenses = new ArrayList<>();
+//    @OneToMany(mappedBy = "user", orphanRemoval = true)
+//    @JsonIgnore
+//    private List<Expenses> expenses = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     @JsonIgnore
