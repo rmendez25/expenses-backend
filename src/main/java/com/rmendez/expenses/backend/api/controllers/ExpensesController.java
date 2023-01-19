@@ -56,12 +56,14 @@ public class ExpensesController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
-    @GetMapping("/userid/{id}/expenses")
+    @GetMapping("/user/{id}/expenses")
+    @ResponseStatus(HttpStatus.OK)
     public Iterable<Expenses> getExpensesByUsername(@PathVariable Long id) {
-        return expenseService.getExpensesByUsername(id);
+        return expenseService.getExpensesByUserId(id);
     }
 
     @GetMapping("/category/{categoryName}")
+    @ResponseStatus(HttpStatus.OK)
     public Iterable<Expenses> getExpensesByCategoryName(@PathVariable String categoryName) {
         return expenseService.getExpensesByCategoryName(categoryName);
     }

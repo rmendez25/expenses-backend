@@ -8,8 +8,6 @@ import com.rmendez.expenses.backend.api.models.ExpensesModel;
 import com.rmendez.expenses.backend.api.repositories.ExpensesRepository;
 import com.rmendez.expenses.backend.api.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -99,7 +97,7 @@ public class ExpenseService {
         expensesRepository.deleteById(id);
     }
 
-    public Iterable<Expenses> getExpensesByUsername(Long id) {
+    public Iterable<Expenses> getExpensesByUserId(Long id) {
         return expensesRepository.findByUserId(id);
     }
 
