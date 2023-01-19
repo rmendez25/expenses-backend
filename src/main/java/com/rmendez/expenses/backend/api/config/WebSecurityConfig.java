@@ -20,20 +20,20 @@ public class WebSecurityConfig {
 
     private final JpaUserDetailService jpaUserDetailService;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-                .userDetailsService(jpaUserDetailService).httpBasic()
-                .and()
-                .authorizeRequests(auth -> auth
-                        .mvcMatchers(HttpMethod.POST, "/users").permitAll()
-                        .mvcMatchers(HttpMethod.GET, "/").permitAll()
-                        .anyRequest()
-                        .authenticated())
-                .csrf().ignoringAntMatchers("/users/**", "/expenses/**", "/authorities/**", "/incomes/**")
-                .and()
-                .build();
-    }
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        return http
+//                .userDetailsService(jpaUserDetailService).httpBasic()
+//                .and()
+//                .authorizeRequests(auth -> auth
+//                        .mvcMatchers(HttpMethod.POST, "/users").permitAll()
+//                        .mvcMatchers(HttpMethod.GET, "/").permitAll()
+//                        .anyRequest()
+//                        .authenticated())
+//                .csrf().ignoringAntMatchers("/users/**", "/expenses/**", "/authorities/**", "/incomes/**")
+//                .and()
+//                .build();
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
