@@ -6,12 +6,13 @@ import com.rmendez.expenses.backend.api.exception.UserNotFoundException;
 import com.rmendez.expenses.backend.api.models.ExpensesModel;
 import com.rmendez.expenses.backend.api.services.ExpenseService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class ExpensesController {
 
     @PutMapping("/expense/{id}/user/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public Expenses updateExpense(@RequestBody Expenses expenses, @PathVariable("id") Long expenseId, @PathVariable("userId")  Long userId) throws ExpenseNotFoundException, UserNotFoundException {
+    public Expenses updateExpense(@RequestBody Expenses expenses, @PathVariable("id") Long expenseId, @PathVariable("userId") Long userId) throws ExpenseNotFoundException, UserNotFoundException {
         return expenseService.updateExpense(expenses, expenseId, userId);
     }
 
@@ -68,5 +69,13 @@ public class ExpensesController {
         return expenseService.getExpensesByCategoryName(categoryName);
     }
 
+    @GetMapping("/from/{start}/to/{final}")
+    @ResponseStatus(HttpStatus.OK)
+    public Iterable<Expenses> getExpensesByRangeOfDates(@PathVariable("start")
+                                                        @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
+                                                        @PathVariable("final")
+                                                        @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate  toDate) {
+        return expenseService.getExpensesByRangeOfDates(fromDate, toDate);
+    }
 
 }

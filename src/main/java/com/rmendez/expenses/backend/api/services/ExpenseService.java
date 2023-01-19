@@ -10,6 +10,7 @@ import com.rmendez.expenses.backend.api.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -103,5 +104,9 @@ public class ExpenseService {
 
     public Iterable<Expenses> getExpensesByCategoryName(String categoryName) {
         return expensesRepository.findByCategoryName(categoryName);
+    }
+
+    public Iterable<Expenses> getExpensesByRangeOfDates(LocalDate fromDate, LocalDate  toDate) {
+        return expensesRepository.findByDates(fromDate, toDate);
     }
 }
