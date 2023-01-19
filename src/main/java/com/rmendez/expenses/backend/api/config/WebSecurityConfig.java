@@ -11,14 +11,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@AllArgsConstructor
-@Configuration
-@EnableGlobalMethodSecurity(
-        prePostEnabled = true
-)
+//@AllArgsConstructor
+//@Configuration
+//@EnableGlobalMethodSecurity(
+//        prePostEnabled = true
+//)
 public class WebSecurityConfig {
 
-    private final JpaUserDetailService jpaUserDetailService;
+//    private final JpaUserDetailService jpaUserDetailService;
 
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
