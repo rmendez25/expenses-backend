@@ -7,6 +7,8 @@ public enum Category {
     EDUCATION,
     HEALTH,
     CHURCH,
+    RENT,
+    LOANS,
     OTHERS
 
 }
