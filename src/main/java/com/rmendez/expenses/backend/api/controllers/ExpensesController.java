@@ -6,6 +6,8 @@ import com.rmendez.expenses.backend.api.exception.UserNotFoundException;
 import com.rmendez.expenses.backend.api.models.ExpensesModel;
 import com.rmendez.expenses.backend.api.services.ExpenseService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +54,16 @@ public class ExpensesController {
         Map<String, String> map = new HashMap<>();
         map.put("message", "Deleted Successfully");
         return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
+    @GetMapping("/userid/{id}/expenses")
+    public Iterable<Expenses> getExpensesByUsername(@PathVariable Long id) {
+        return expenseService.getExpensesByUsername(id);
+    }
+
+    @GetMapping("/category/{categoryName}")
+    public Iterable<Expenses> getExpensesByCategoryName(@PathVariable String categoryName) {
+        return expenseService.getExpensesByCategoryName(categoryName);
     }
 
 
