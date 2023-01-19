@@ -53,16 +53,7 @@ public class User {
             name = "users_authorities",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "authorityId"))
-   // @JsonIgnore
     private List<Authority> authorities;
-
-//    @OneToMany(mappedBy = "user", orphanRemoval = true)
-//    @JsonIgnore
-//    private List<Expenses> expenses = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
-    @JsonIgnore
-    private List<Income> incomes = new ArrayList<>();
 
     public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
