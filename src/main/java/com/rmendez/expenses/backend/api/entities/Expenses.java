@@ -39,9 +39,6 @@ public class Expenses {
     @Column(name = "amount", nullable = false)
     private Double amount;
 
-    @Column(name = "notes")
-    private String notes;
-
     @Column(name = "date")
     private LocalDateTime date;
 
