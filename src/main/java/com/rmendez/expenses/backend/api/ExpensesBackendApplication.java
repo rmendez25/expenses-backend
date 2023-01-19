@@ -15,11 +15,5 @@ public class ExpensesBackendApplication {
 		SpringApplication.run(ExpensesBackendApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner commandLineRunner(UserRepository users, PasswordEncoder encoder) {
-		return args -> {
-			users.save(new User("Robert", "Mendez", "admin", encoder.encode("password")));
-		};
-	}
 
 }
