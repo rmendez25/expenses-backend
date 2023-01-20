@@ -87,7 +87,7 @@ public class UserService {
         }
 
         if (Objects.nonNull(user.getPassword()) && !"".equalsIgnoreCase(user.getPassword())) {
-            userToUpdate.setPassword(user.getPassword());
+            userToUpdate.setPassword(encoder.encode(user.getPassword()));
         }
 
         userToUpdate.setUpdatedAt(LocalDateTime.now());

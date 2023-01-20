@@ -23,7 +23,7 @@ public class ExpensesController {
 
     private final ExpenseService expenseService;
 
-    @PostMapping("/{id}")
+    @PostMapping("/user/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Expenses saveExpense(@RequestBody ExpensesModel expensesModel, @PathVariable Long id) throws UserNotFoundException {
         return expenseService.saveExpense(expensesModel, id);
