@@ -5,6 +5,7 @@ public enum Category {
     FOOD,
     TRANSPORTATION,
     EDUCATION,
+    SERVICES,
     HEALTH,
     CHURCH,
     RENT,
